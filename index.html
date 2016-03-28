@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="GBK">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<title>谍战双十一</title>
+    <style>
+        *{margin:0;padding:0}
+        html, body
+        {
+            -webkit-text-size-adjust:none;
+            overflow: hidden;
+            height:100%;
+        }
+    </style>
+    <script>
+
+       function IsPC()
+       {
+           var userAgentInfo = navigator.userAgent;
+           var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+           var flag = true;
+           for (var v = 0; v < Agents.length; v++) {
+               if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+           }
+           return flag;
+       }
+
+       var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i) != 'micromessenger' && !IsPC()){ //不是微信浏览器且不是PC端那么就跳转到天猫页
+            window.location.href = 'https://www.tmall.com/wow/act/14700/yiyidijiu';
+        }
+    </script>
+    <script src="phaser.2.4.4.min.js"></script>
+    <script src="Boot.js"></script>
+    <script src="Preloader.js?4"></script>
+    <script src="MainMenu.js?6"></script>
+    <script src="ready.js"></script>
+    <script src="Game.js?1"></script>
+    <script src="over.js"></script>
+</head>
+<body style="background-color: #000">
+
+<script>
+
+    (function() {
+        var game = new Phaser.Game(750, 1206, Phaser.CANVAS, 'game');
+        game.state.add('Boot', MyGame.Boot);
+        game.state.add('Preloader', MyGame.Preloader);
+        game.state.add('MainMenu', MyGame.MainMenu);
+        game.state.add('ready', MyGame.ready);
+        game.state.add('Game', MyGame.Game);
+        game.state.add('over', MyGame.over);
+        game.state.start('Boot');
+    })();
+</script>
+<!--<script src="inpMusic.js"></script>-->
+</body>
+</html>
